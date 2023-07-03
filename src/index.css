@@ -1,0 +1,142 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+.user {
+  margin-right: 20px;
+  margin-left: 20px;
+}
+a {
+  margin: 20px;
+  color: white;
+  text-decoration: none;
+}
+.header {
+  margin-bottom: 30px;
+}
+.tiltle {
+  font-weight: 1000;
+  font-size: 30px;
+  border-left: 3px solid black;
+  border-top: 3px solid black;
+  border-right: 3px solid black;
+  color: black;
+  float: left;
+}
+.tiltleLine {
+  border-bottom: 3px solid black;
+  width: 100%;
+  height: 3px;
+  padding-top: 43px;
+}
+.tiltleLineSp {
+  border-bottom: 3px solid black;
+  margin-top: 68px;
+}
+.titleSp {
+  border: none;
+  background-color: white;
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: black !important;
+}
+.titleSanPham h2 {
+  float: left;
+  margin-top: 30px;
+  border-top: 3px solid black;
+  border-left: 3px solid black;
+  border-right: 3px solid black;
+  color: black;
+}
+.DM {
+  padding-left: 50px;
+  margin-top: 40px;
+}
+.danhMuc {
+  font-size: 20px;
+  font-weight: 700;
+  margin-left: 7px;
+}
+
+.tableDH {
+  margin-left: 30px;
+}
+.input {
+  width: 450px;
+}
+.nameAccount {
+  color: black !important;
+  font-weight: 700 !important;
+}
+.btnLg {
+  color: white !important;
+  background-color: black !important;
+  float: left;
+  margin-left: 10px !important;
+  margin-top: 20px !important;
+}
+.btnLgGG {
+  margin-right: 250px !important;
+  margin-top: 20px !important;
+}
+
+.sigup {
+  padding-right: 200px;
+}
+.login {
+  padding-left: 200px;
+}
+.thanhToan {
+  width: 350px;
+  float: right;
+}
+.tiltlePay {
+  width: 900px;
+  margin-bottom: 30px !important;
+}
+.inputSdt {
+  float: left;
+  width: 410px;
+}
+.inputEmail {
+  float: right;
+  width: 410px;
+}
+.inputTp {
+  float: left;
+  width: 410px;
+  margin-top: 30px !important;
+}
+.inputXa {
+  float: left;
+  width: 410px;
+  margin-top: 30px !important;
+}
+.inputQuan {
+  float: right;
+  width: 410px;
+  margin-top: 30px !important;
+}
+.inputAddress {
+  float: right;
+  width: 410px;
+  margin-top: 30px !important;
+}
+.inputGc {
+  width: 900px;
+  margin-top: 30px !important;
+}
+.btnDetail {
+  color: black;
+  width: 70px;
+  height: 35px;
+}
