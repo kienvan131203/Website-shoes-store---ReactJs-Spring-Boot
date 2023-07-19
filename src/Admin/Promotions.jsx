@@ -2,9 +2,12 @@ import {
   Box,
   Button,
   Container,
-  FormControlLabel,
+  FormControl,
   Grid,
   IconButton,
+  InputLabel,
+  MenuItem,
+  Select,
   TextField,
   Typography,
 } from "@mui/material";
@@ -20,9 +23,6 @@ import AdminPage from "./AdminPage";
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { alpha, styled } from "@mui/material/styles";
-import { pink } from "@mui/material/colors";
-import Switch from "@mui/material/Switch";
 
 const columns = [
   { field: "id", headerName: "ID", width: 70 },
@@ -56,69 +56,7 @@ const rows = [
   { id: 8, lastName: "Frances", firstName: "Rossini", age: 36 },
   { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
 ];
-const IOSSwitch = styled((props) => (
-  <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
-))(({ theme }) => ({
-  width: 100,
-  height: 30,
-  padding: 0,
-  "& .MuiSwitch-switchBase": {
-    padding: 0,
-    margin: 1,
-    transitionDuration: "300ms",
-    "&.Mui-checked": {
-      transform: "translateX(70px)",
-      color: "#fff",
-      "& + .MuiSwitch-track": {
-        backgroundColor: theme.palette.mode === "dark" ? "#2ECA45" : "#65C466",
-        opacity: 1,
-        border: 0,
-      },
-      "&.Mui-disabled + .MuiSwitch-track": {
-        opacity: 0.5,
-      },
-    },
-    "&.Mui-focusVisible .MuiSwitch-thumb": {
-      color: "#33cf4d",
-      border: "6px solid #fff",
-    },
-    "&.Mui-disabled .MuiSwitch-thumb": {
-      color:
-        theme.palette.mode === "light"
-          ? theme.palette.grey[100]
-          : theme.palette.grey[600],
-    },
-    "&.Mui-disabled + .MuiSwitch-track": {
-      opacity: theme.palette.mode === "light" ? 0.7 : 0.3,
-    },
-  },
-  "& .MuiSwitch-thumb": {
-    boxSizing: "border-box",
-    width: 29,
-    height: 29,
-  },
-  "& .MuiSwitch-track": {
-    borderRadius: 26 / 2,
-    backgroundColor: theme.palette.mode === "light" ? "#E9E9EA" : "#39393D",
-
-    opacity: 1,
-    transition: theme.transitions.create(["background-color"], {
-      duration: 500,
-    }),
-  },
-}));
 export default function Promotions() {
-  const [showTextField, setShowTextField] = React.useState(false);
-  const [inputValue, setInputValue] = React.useState("");
-
-  const handleSwitchChange = () => {
-    setShowTextField(!showTextField);
-    setInputValue("");
-  };
-
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-  };
   const [state, setState] = React.useState({});
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -179,7 +117,7 @@ export default function Promotions() {
         />
       </Box>
       <Box mt={3} pl={3}>
-        <h3>Thời gian hiệu lực:</h3>
+        <h3>Thời gian bắt đầu:</h3>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DemoContainer components={["DateTimePicker"]}>
             <DateTimePicker
@@ -190,16 +128,43 @@ export default function Promotions() {
         </LocalizationProvider>
       </Box>
       <Box mt={3} pl={3}>
+        <h3>Thời gian kết thúc:</h3>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DemoContainer components={["DateTimePicker"]}>
+            <DateTimePicker
+              label="Thời gian hiệu lực"
+              size="small"
+              sx={{ width: "450px" }}
+            />
+          </DemoContainer>
+        </LocalizationProvider>
+      </Box>
+      <Box mt={3} pl={3}>
         <h3>Loại giảm giá:</h3>
-        <div>
-          <FormControlLabel
-            control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
-          />
-          <Switch checked={showTextField} onChange={handleSwitchChange} />
-          {showTextField && (
-            <TextField value={inputValue} onChange={handleInputChange} />
-          )}
-        </div>
+        <Box sx={{ minWidth: 120 }}>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Loại giảm giá</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              sx={{ width: "450px" }}
+              label="Loại Giá giá"
+            >
+              <MenuItem value={10}>%</MenuItem>
+              <MenuItem value={20}>Giá tiên</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+      </Box>
+      <Box mt={3} pl={3}>
+        <h3>Giá trị giảm:</h3>
+        <TextField
+          id="outlined-basic"
+          label="Giá trị giảm"
+          variant="outlined"
+          size="large"
+          sx={{ width: "450px" }}
+        />
       </Box>
       <Box
         mt={10}

@@ -23,6 +23,9 @@ import Category from "./Admin/Category";
 import Material from "./Admin/Material";
 import Order from "./Admin/Order";
 import Promotions from "./Admin/Promotions";
+import Staff from "./Admin/Staff";
+import Customer from "./Admin/Customer";
+import Sell from "./Admin/Sell";
 function App() {
   return (
     <div className="App">
@@ -47,6 +50,9 @@ function App() {
           <Route exact path="/Material" element={<Material />} />
           <Route exact path="/Order" element={<Order />} />
           <Route exact path="/Promotions" element={<Promotions />} />
+          <Route exact path="/Staff" element={<Staff />} />
+          <Route exact path="/Customer" element={<Customer />} />
+          <Route exact path="/Sell" element={<Sell />} />
         </Routes>
         {/* <Footer /> */}
       </Router>

@@ -22,6 +22,7 @@ import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import { Link } from "react-router-dom";
 import { Collapse, ListItemIcon } from "@mui/material";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
+
 const drawerWidth = 240;
 
 function AdminPage(props) {
@@ -101,13 +102,6 @@ function AdminPage(props) {
                   <ListItemButton
                     sx={{ pl: 2 }}
                     component={Link}
-                    to="/Material"
-                  >
-                    <ListItemText primary="&nbsp;	&bull; &nbsp; &nbsp; Chất liệu" />
-                  </ListItemButton>
-                  <ListItemButton
-                    sx={{ pl: 2 }}
-                    component={Link}
                     to="/Category"
                   >
                     <ListItemText primary="&nbsp;	&bull; &nbsp; &nbsp; Danh mục" />
@@ -129,12 +123,30 @@ function AdminPage(props) {
             <ListItemText sx={{ marginRight: "40px" }}>Khuyến mại</ListItemText>
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton sx={{ textAlign: "left" }}>
-            <ListItemText>
-              <PeopleAltIcon />
-            </ListItemText>
-            <ListItemText sx={{ marginRight: "60px" }}>Tài khoản</ListItemText>
+        <ListItem disablePadding onClick={handleDrawerToggle}>
+          <ListItemButton onClick={handleClick}>
+            <List sx={{ width: "100%" }}>
+              <ListItemIcon>
+                <PeopleAltIcon sx={{ marginRight: "25px" }} />
+                <ListItemText primary="Tài Khoản" />
+                {open ? <ExpandLess /> : <ExpandMore />}
+              </ListItemIcon>
+
+              <Collapse in={open} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl: 2 }} component={Link} to="/Staff">
+                    <ListItemText primary="&nbsp;	&bull; &nbsp; &nbsp; Nhân Viên" />
+                  </ListItemButton>
+                  <ListItemButton
+                    sx={{ pl: 2 }}
+                    component={Link}
+                    to="/Customer"
+                  >
+                    <ListItemText primary="&nbsp;	&bull; &nbsp; &nbsp; Khách Hàng" />
+                  </ListItemButton>
+                </List>
+              </Collapse>
+            </List>
           </ListItemButton>
         </ListItem>
       </List>

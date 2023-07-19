@@ -17,6 +17,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { DataGrid } from "@mui/x-data-grid";
 import AdminPage from "./AdminPage";
+import Divider from "@mui/material/Divider";
 
 const columns = [
   { field: "id", headerName: "ID", width: 70 },
@@ -55,7 +56,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: 600,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -104,10 +105,43 @@ export default function Price() {
                 <Typography id="modal-modal-title" variant="h6" component="h2">
                   Thêm Giá
                 </Typography>
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                  Duis mollis, est non commodo luctus, nisi erat porttitor
-                  ligula.
+                <Typography id="modal-modal-title" component="h2">
+                  Thêm Giá mới của bạn từ các thông tin dưới đây
                 </Typography>
+
+                <Divider />
+                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                  <h3>Giá Sản phẩm: </h3>
+                  <TextField
+                    id="outlined-basic"
+                    label="Giá Sản Phẩm"
+                    variant="outlined"
+                    size="small"
+                    sx={{
+                      width: "100%",
+
+                      marginBottom: "70px",
+                    }}
+                  />
+                </Typography>
+                <Divider />
+                <Box mt={1}>
+                  <Button
+                    variant="outlined"
+                    color="error"
+                    onClick={handleClose}
+                    sx={{ width: "47%", marginRight: "28px" }}
+                  >
+                    Hủy
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="success"
+                    sx={{ width: "47%" }}
+                  >
+                    Thêm Giá
+                  </Button>
+                </Box>
               </Box>
             </Modal>
             <Button

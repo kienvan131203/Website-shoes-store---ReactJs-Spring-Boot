@@ -3,7 +3,7 @@ import {
   Button,
   Container,
   Grid,
-  IconButton,
+  Modal,
   TextField,
   Typography,
 } from "@mui/material";
@@ -16,10 +16,8 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { DataGrid } from "@mui/x-data-grid";
-import Drawer from "@mui/material/Drawer";
-import Divider from "@mui/material/Divider";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import AdminPage from "./AdminPage";
+import Divider from "@mui/material/Divider";
 
 const columns = [
   { field: "id", headerName: "ID", width: 70 },
@@ -53,77 +51,21 @@ const rows = [
   { id: 8, lastName: "Frances", firstName: "Rossini", age: 36 },
   { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
 ];
-
-export default function Category() {
-  const [state, setState] = React.useState({});
-
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-
-    setState({ ...state, [anchor]: open });
-  };
-
-  const list = (anchor) => (
-    <Box
-      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 650 }}
-      role="presentation"
-      // onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <Box pl={3} sx={{ backgroundColor: "rgb(249, 249, 249);" }}>
-        <IconButton
-          variant="outlined"
-          color="error"
-          sx={{ float: "right", borderRadius: "40px" }}
-          onClick={toggleDrawer(anchor, false)}
-        >
-          <HighlightOffIcon sx={{ width: "45px", height: "45px" }} />
-        </IconButton>
-        <Typography sx={{ fontSize: "30px", fontWeight: "1000" }}>
-          Thêm sản phẩm
-        </Typography>
-
-        <Typography>
-          Thêm sản phẩm mới của bạn từ các thông tin dưới đây
-        </Typography>
-      </Box>
-      <Divider />
-
-      <Box mt={3} pl={3}>
-        <h2>Danh Mục sản phẩm:</h2>
-        <TextField
-          id="outlined-basic"
-          label="Danh M Sản Phẩm"
-          variant="outlined"
-          size="small"
-          sx={{ width: "450px" }}
-        />
-      </Box>
-      <Box
-        mt={60}
-        sx={{ backgroundColor: "rgb(249, 249, 249);" }}
-        px={3}
-        py={3}
-      >
-        <Button
-          variant="outlined"
-          color="error"
-          sx={{ width: "280px", marginRight: "30px" }}
-          onClick={toggleDrawer(anchor, false)}
-        >
-          hủy
-        </Button>
-        <Button variant="contained" color="success" sx={{ width: "280px" }}>
-          Thêm Danh Mục
-        </Button>
-      </Box>
-    </Box>
-  );
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 600,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+export default function Price() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   return (
     <AdminPage>
       <Container maxWidth="lg">
@@ -153,26 +95,63 @@ export default function Category() {
             >
               <FileUploadIcon /> Export Excel
             </Button>
-            {["right"].map((anchor) => (
-              <React.Fragment key={anchor}>
-                <Drawer
-                  anchor={anchor}
-                  open={state[anchor]}
-                  onClose={toggleDrawer(anchor, false)}
-                >
-                  {list(anchor)}
-                </Drawer>
-                <Button
-                  sx={{ float: "right", marginLeft: "10px", marginTop: "15px" }}
-                  variant="contained"
-                  color="success"
-                  onClick={toggleDrawer(anchor, true)}
-                >
-                  <AddIcon /> Add Product
-                </Button>
-              </React.Fragment>
-            ))}
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  Thêm Danh mục
+                </Typography>
+                <Typography id="modal-modal-title" component="h2">
+                  Thêm Danh mục mới của sản phẩm từ các thông tin dưới đây
+                </Typography>
 
+                <Divider />
+                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                  <h3>Danh mục Sản phẩm: </h3>
+                  <TextField
+                    id="outlined-basic"
+                    label="Danh mục Sản Phẩm"
+                    variant="outlined"
+                    size="small"
+                    sx={{
+                      width: "100%",
+
+                      marginBottom: "70px",
+                    }}
+                  />
+                </Typography>
+                <Divider />
+                <Box mt={1}>
+                  <Button
+                    variant="outlined"
+                    color="error"
+                    onClick={handleClose}
+                    sx={{ width: "47%", marginRight: "28px" }}
+                  >
+                    Hủy
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="success"
+                    sx={{ width: "47%" }}
+                  >
+                    Thêm Danh mục
+                  </Button>
+                </Box>
+              </Box>
+            </Modal>
+            <Button
+              sx={{ float: "right", marginLeft: "10px", marginTop: "15px" }}
+              variant="contained"
+              color="success"
+              onClick={handleOpen}
+            >
+              <AddIcon /> Add Product
+            </Button>
             <Button
               sx={{ float: "right", marginTop: "15px" }}
               variant="contained"
